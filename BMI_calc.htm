@@ -1,0 +1,193 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta name="robots" content="INDEX,FOLLOW">
+<meta name="description" content="BMIをiPhoneとかで簡単に計算できるwebページ。スライダーバーで値の変更が可能なので、例えば身長変えずに体重をどのぐらい変動した時に、どのぐらいのBMI値になるのかとか、いちいち数値を入れなくても計算可能。この辺りのBMIになる時には、どのぐらいの体重であるのかとかの逆引き計算も簡単。大体どのぐらいの値で、どのぐらいの数字になり、どの範囲位置に居るのか、客観的に分かりやすいようにグラフ的な表示。iPhone、スマホ向けに最適化。">
+<meta name="keywords" content="BMI,計算,身長,体重,逆引き">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="viewport" content="width=480" />
+<link rel="apple-touch-icon" href="BMI_calc.png" />
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6138344951521938",
+          enable_page_level_ads: true
+     });
+</script>
+<title>
+ざっくりBMI計算
+</title>
+<style type="text/css">
+body  {
+	font-size: 14px;
+	font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	background-color: #eee;
+	color: #222;
+	width: 450px;
+}
+#W_text,#H_text,#BMI_text {
+	font-size: 40px;
+}
+h1 {
+	border-color: #666;
+	border-width: 0px 0px 0px 30px;
+	border-style: solid;
+	padding-left: 14px;
+	font-size: 40px;
+	background-color: #fff;
+	font-weight: normal;
+}
+h2,h3 {
+	border-color: #666;
+	border-width: 0px 0px 0px 16px;
+	border-style: solid;
+	padding-left: 14px;
+	background-color: #fff;
+	font-weight: normal;
+}
+body .frm{
+	background-color: #fff;
+}
+#Height,#Weight,#BMI{
+	width: 450px;
+	height: 50px;
+	-webkit-user-select: none;
+}
+input[type='range']::-webkit-slider-thumb { 
+	width: 48px;
+	height: 48px;
+    border: 8px solid #666;
+}
+#clist li{
+	font-size: 14px;
+}
+
+</style>
+</head>
+<body>
+
+<h1>ざっくりBMI計算</h1>
+<p>
+身長と体重から、ざっくりとしたBMI値を計算する。iPhoneとかに最適化し、スライダーで簡単操作。
+</p>
+	
+<form class="frm" action="#">
+身長： <span id ="H_text"></span> [cm]
+<table width=450 id="age_color">
+<td align=center style="width:50px;background-color:#8dd;"><<120</td>
+<td align=center style="width:340px;background-color:#888;"></td>
+<td align=center style="width:50px;background-color:#8dd;">200>></td>
+</table>
+<input id="Height" type="range" min="120" max="200" step="0.1" value="170" />
+
+<div>
+体重：　<span id ="W_text"></span>　[kg]
+</div>
+<table width=450>
+<td align=center style="width:50px;background-color:#8dd;"><<20</td>
+<td align=center style="width:340px;background-color:#888;"></td>
+<td align=center style="width:50px;background-color:#8dd;">140>></td>
+</table>
+<input id="Weight" name="uvo" type="range" min="20" max="140" step="0.1" value="70" />
+
+<div>
+BMI</b>：<span id ="BMI_text"></span>　
+</div>
+<table id="UTV_color">
+<td align=center style="width:100px;background-color:#88f;">低体重</td>
+<td align=center style="width:70px;background-color:#8f8;">普通</td>
+<td align=center style="width:50px;background-color:#cf8;">肥満1</td>
+<td align=center style="width:50px;background-color:#cc8;">肥満2</td>
+<td align=center style="width:50px;background-color:#ca8;">肥満3</td>
+<td align=center style="width:120px;background-color:#c88;">肥満4</td>
+</table>
+<table width=450>
+<input id="Bmi" type="range" min="10" max="50" step="0.1" value="22" />
+</table>
+
+<p>低体重18.5以下、普通18.5〜25、肥満1度25〜30、肥満2度30〜35、肥満3度35〜40、肥満4度40〜</p>
+</form>
+
+<br>
+<h2>使い方やらご注意など</h2>
+<p>
+ざっくりとした体重変動によって、BMI値がどのぐらい変動するのか知っておくのも悪いことではないかと<br>
+</p>
+<ul id="clist">
+<li>身長、体重をスライダーでセットすると、その時のBMI値を表示します。</li>
+<li>身長、BMIをスライダーでセットすると、その時の体重を表示します。</li>
+<li>HTML5に対応したブラウザでないと動きません。（IE9以前とかandroid標準ブラウザとか前のiOSのsafariだとダメみたいです）<li>iPhoneだとつまみ部をドラッグする必要があります。chromeとかは棒の部分をタップでもいいみたいです。</li>
+<li>判定基準は→<a href="https://ja.wikipedia.org/wiki/%E3%83%9C%E3%83%87%E3%82%A3%E3%83%9E%E3%82%B9%E6%8C%87%E6%95%B0" target="_blank">ボディマス指数 - Wikipeida</a></li>
+<li>iPhoneの場合、safariの下の真ん中のメニューから「ホーム画面に追加」すると、設定してあるアイコンがホーム画面に登録されます。ちょっとダサいアイコンかなぁ(^^;;</li>
+</ul>
+
+<h2>その他</h2>
+<p>
+ご意見感想などは<a href="https://nephro.blog.fc2.com/">ココらへん</a>
+</p>
+
+<script>
+var	gH = 170;
+var	gW = 70;
+var	gBMI = 22;
+window.onload = () => {
+   	document.getElementById("Height").addEventListener('change', change_sliderHeight, false);
+   	document.getElementById("Weight").addEventListener('change', change_sliderWeight, false);
+   	document.getElementById("Bmi").addEventListener('change', change_sliderBmi, false);
+	dispText();
+}
+
+let change_sliderHeight = () => {
+    gH = document.getElementById("Height").value;
+	gBMI =  gW / (Math.pow( (gH/100), 2 )) ;
+	document.getElementById("Bmi").value = gBMI;
+	dispText();
+}
+let change_sliderWeight = () => {
+    gW = document.getElementById("Weight").value;
+	gBMI =  gW / (Math.pow( (gH/100), 2 )) ;
+	document.getElementById("Bmi").value = gBMI;
+	dispText();
+}
+let change_sliderBmi = () => {
+	gBMI = document.getElementById("Bmi").value;
+	gW = gBMI * (Math.pow( (gH/100), 2 )) ;
+	document.getElementById("Weight").value = gW;
+	dispText();
+}
+let dispText = () => {
+	document.getElementById("H_text").innerText = Math.round(gH*10,0)/10;
+	document.getElementById("W_text").innerText = Math.round(gW*10,0)/10;
+	document.getElementById("BMI_text").innerText = Math.round(gBMI*10,0)/10;;
+}
+</script>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6138344951521938";
+/* text */
+google_ad_slot = "8151429605";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+</body>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35072870-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</html>
+

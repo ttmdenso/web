@@ -1,0 +1,210 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta name="robots" content="INDEX,FOLLOW">
+<meta name="description" content="都立高校入試の1000点満点の換算点数をざっくり計算。スライダーで簡単操作。iPhoneなどHTML5対応のスマホに最適化。ブラウザでサクサク動作。">
+<meta name="keywords" content="都立高校入試,換算,点数,内申,計算">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="viewport" content="width=480" />
+<link rel="apple-touch-icon" href="toritsu1000.png" />
+<title>
+ざっくり都立入試換算
+</title>
+<style type="text/css">
+body  {
+	font-size: 14px;
+	font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+	background-color: #eee;
+	color: #222;
+	width: 450px;
+}
+h1 {
+	border-color: #666;
+	border-width: 0px 0px 0px 30px;
+	border-style: solid;
+	padding-left: 14px;
+	font-size: 30px;
+	background-color: #fff;
+	font-weight: normal;
+}
+h2,h3 {
+	border-color: #666;
+	border-width: 0px 0px 0px 16px;
+	border-style: solid;
+	padding-left: 14px;
+	background-color: #fff;
+	font-weight: normal;
+}
+form{
+	background-color: #fff;
+}
+#K_text, #T_text, #N_text {
+	font-size: 40px;
+}
+#Kansan, #Tokuten, #Naishin{
+	width: 450px;
+	height: 50px;
+	-webkit-user-select: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  width: 48px;
+  height: 48px;
+    border: 8px solid #666;
+}
+#clist li{
+	font-size: 14px;
+}
+
+</style>
+</head>
+<body>
+
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- mobile468 -->
+	<ins class="adsbygoogle"
+	     style="display:inline-block;width:468px;height:60px"
+	     data-ad-client="ca-pub-6138344951521938"
+	     data-ad-slot="3282171601"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+
+<h1>ざっくり都立入試換算</h1>
+<p>
+スライダーで簡単操作。内申換算点(65点満点)とテスト点数(500満点)と1000点満点で換算した数値を、相互に変換計算して表示。
+</p>
+
+<div>
+<form>
+換算内申(65)： <span id ="N_text"></span>
+<input id="Naishin" type="range" min="26" max="65" step="1" value="39" />
+<table width=450 id="age_color">
+<td align=center style="width:50px;background-color:#adb;"><<26</td>
+<td align=center style="width:340px;background-color:#aaa;"></td>
+<td align=center style="width:50px;background-color:#adb;">65>></td>
+</table>
+</form>
+</div>
+
+<div>
+<form>
+５教科(500)： <span id ="T_text"></span>
+<input id="Tokuten" type="range" min="100" max="500" step="1" value="300" />
+<table width=450 id="age_color">
+<td align=center style="width:50px;background-color:#adb;"><<100</td>
+<td align=center style="width:340px;background-color:#aaa;"></td>
+<td align=center style="width:50px;background-color:#adb;">500>></td>
+</table>
+</form>
+</div>
+
+<div>
+<form>
+換算点数(1000)：　<span id ="K_text"></span>
+<input id="Kansan" type="range" min="300" max="1000" step="1" value="600" />
+<table width=450>
+<td align=center style="width:50px;background-color:#adb;"><<300</td>
+<td align=center style="width:340px;background-color:#aaa;"></td>
+<td align=center style="width:50px;background-color:#adb;">1000>></td>
+</table>
+</form>
+</div>
+
+
+
+
+<br>
+<h2>使い方やらご注意など</h2>
+<p>
+都立高校入試の1000点満点の換算点数をざっくり計算。スライダーで簡単操作。iPhoneなどHTML5対応のスマホに最適化。ブラウザでサクサク動作。</p>
+<ul id="clist">
+<li>65点満点の内申換算点と1000点満点の都立目標高校の入試目安点数をスライダーで選択すると、その値に必要な5教科の点数(500点満点)を表示します。</li>
+<li>65点満点の内申換算点と5教科のテスト点数(500点満点)をスライダーで選択すると、それらの値から1000点満点の換算点数を表示します。</li>
+<li>小数点以下の値は丸めて表示します。</li>
+<li>HTML5に対応したブラウザでないと動きません。（IE9以前とかandroid標準ブラウザとか前のiOSのsafariだとダメみたいです）</li>
+<li>iPhoneだとつまみ部をドラッグする必要があります。chromeとかは棒の部分をタップでもいいみたいです。</li>
+</ul>
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 336x280g -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-6138344951521938"
+     data-ad-slot="6967986001"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<h2>その他</h2>
+<p>
+<a href="./toritsu-xday.htm">都立入試まであと何日？</a>
+</p>
+<p>
+ご意見感想などは<a href="https://nephro.blog.fc2.com/">ココらへん</a>
+</p>
+
+<script>
+var	gN = 39;
+var	gT = 300;
+var	gK = (gN/65)*300 + (gT/500)*700 ;
+window.onload = () => {
+   	document.getElementById("Kansan").addEventListener('change', change_sliderK, false);
+   	document.getElementById("Naishin").addEventListener('change', change_sliderN, false);
+   	document.getElementById("Tokuten").addEventListener('change', change_sliderT, false);
+	dispP();
+}
+let change_sliderN = () => {
+	gN = document.getElementById("Naishin").value;
+	gK = (gN/65)*300 + (gT/500)*700 ;
+	document.getElementById("Kansan").value = gK;
+	dispP();
+}
+let change_sliderT = () => {
+	gT = document.getElementById("Tokuten").value;
+	gK = (gN/65)*300 + (gT/500)*700 ;
+	document.getElementById("Kansan").value = gK;
+	dispP();
+}
+let change_sliderK = () => {
+	gK = document.getElementById("Kansan").value;
+	gT = (gK - (gN/65)*300) *500/700 ;
+	document.getElementById("Tokuten").value = gT;
+	dispP();
+}
+
+let	dispP = () => {
+	document.getElementById("K_text").innerText = Math.round(gK)+"[点]";
+	document.getElementById("T_text").innerText = Math.round(gT)+"[点]";
+	document.getElementById("N_text").innerText = gN+"[点]";
+}
+</script>
+
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="autorelaxed"
+     data-ad-client="ca-pub-6138344951521938"
+     data-ad-slot="1206451335"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</body>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35072870-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</html>
